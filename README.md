@@ -2,6 +2,12 @@
 
 A full-stack real-time team chat application built with Next.js, featuring channels, real-time messaging, user authentication, and online presence tracking.
 
+## Live Demo
+
+🚀 **Live Application:** [https://chat-app-pi-ten-14.vercel.app](https://chat-app-pi-ten-14.vercel.app)
+
+📦 **GitHub Repository:** [https://github.com/Aashutosh2004011/Chat_App](https://github.com/Aashutosh2004011/Chat_App)
+
 ## Features
 
 ### Core Features
@@ -30,10 +36,12 @@ A full-stack real-time team chat application built with Next.js, featuring chann
 - **NextAuth.js** for authentication
 
 ### Backend
-- **Next.js API Routes**
+- **Next.js API Routes** (deployed on Vercel)
 - **Prisma ORM**
-- **PostgreSQL** database
+- **PostgreSQL** database (Supabase)
 - **bcryptjs** for password hashing
+
+**Backend API Base URL:** `https://chat-app-pi-ten-14.vercel.app/api`
 
 ## Prerequisites
 
@@ -45,8 +53,8 @@ A full-stack real-time team chat application built with Next.js, featuring chann
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
-cd mini-team-chat
+git clone git@github.com:Aashutosh2004011/Chat_App.git
+cd Chat_App
 ```
 
 ### 2. Install Dependencies
@@ -86,7 +94,7 @@ DATABASE_URL="your-postgresql-connection-string"
 
 # NextAuth Configuration
 NEXTAUTH_SECRET="your-secret-key-here-generate-with-openssl-rand-base64-32"
-NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_URL="http://localhost:3000"  # Use https://chat-app-pi-ten-14.vercel.app for production
 ```
 
 To generate a secure `NEXTAUTH_SECRET`:
@@ -239,9 +247,9 @@ This approach was chosen for:
 2. Import your repository on [Vercel](https://vercel.com)
 
 3. Add environment variables in Vercel dashboard:
-   - `DATABASE_URL`: Your PostgreSQL connection string
-   - `NEXTAUTH_SECRET`: Your secret key
-   - `NEXTAUTH_URL`: Your production URL (e.g., https://your-app.vercel.app)
+   - `DATABASE_URL`: Your PostgreSQL connection string (e.g., Supabase URL)
+   - `NEXTAUTH_SECRET`: Your secret key (generate with `openssl rand -base64 32`)
+   - `NEXTAUTH_URL`: `https://chat-app-pi-ten-14.vercel.app`
 
 4. Deploy
 
