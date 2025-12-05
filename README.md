@@ -15,7 +15,7 @@ A full-stack real-time team chat application built with Next.js, featuring chann
 - **Persistent Sessions**: Users remain logged in on page refresh
 - **Channels**: Create, view, join, and leave channels
 - **Real-time Messaging**: Messages appear instantly using polling mechanism (updates every 2 seconds)
-- **Message History**: All messages are stored in PostgreSQL database
+- **Message History**: All messages are stored in MongoDB database
 - **Pagination**: Load older messages without fetching everything at once
 - **Online/Offline Presence**: See which users are currently online in each channel
 - **Member Count**: View the number of members in each channel
@@ -38,7 +38,7 @@ A full-stack real-time team chat application built with Next.js, featuring chann
 ### Backend
 - **Next.js API Routes** (deployed on Vercel)
 - **Prisma ORM**
-- **PostgreSQL** database (Supabase)
+- **MongoDB** database (Supabase)
 - **bcryptjs** for password hashing
 
 **Backend API Base URL:** `https://chat-app-pi-ten-14.vercel.app/api`
@@ -46,7 +46,7 @@ A full-stack real-time team chat application built with Next.js, featuring chann
 ## Prerequisites
 
 - Node.js 18+ and npm
-- PostgreSQL database (local or cloud-hosted)
+- MongoDB database (cloud-hosted)
 
 ## Setup and Installation
 
@@ -67,33 +67,29 @@ npm install
 
 You have two options for the database:
 
-#### Option A: Use Prisma Dev (Local PostgreSQL in Docker)
+#### Option A: Use Prisma Dev (Local MongoDB in Docker)
 
 ```bash
 npx prisma dev
 ```
 
-This will start a local PostgreSQL instance.
+This will start a local MongoDB instance.
 
-#### Option B: Use a Cloud PostgreSQL Database
+#### Option B: Use a Cloud MongoDB Database
 
-Get a free PostgreSQL database from one of these providers:
-- [Neon](https://neon.tech)
-- [Supabase](https://supabase.com)
-- [Railway](https://railway.app)
+Get a free MongoDB database from one of these providers:
+- [MongoDB Atlas](https://cloud.mongodb.com)
 
-Then update the `.env` file with your database URL.
 
 ### 4. Environment Variables
 
-Create or update the `.env` file in the root directory:
 
 ```env
-# Database URL - Replace with your PostgreSQL connection string
-DATABASE_URL="your-postgresql-connection-string"
+# Database URL - Replace with your MongoDB connection string
+DATABASE_URL="mongodb+srv://aashutoshsingh1003_db_user:king123@cluster0.vcvotgb.mongodb.net/chatapp?retryWrites=true&w=majority&appName=Cluster0"
 
 # NextAuth Configuration
-NEXTAUTH_SECRET="your-secret-key-here-generate-with-openssl-rand-base64-32"
+NEXTAUTH_SECRET="yoyohtefghsghsghgsehgjsnabjdkkkks"
 NEXTAUTH_URL="http://localhost:3000"  # Use https://chat-app-pi-ten-14.vercel.app for production
 ```
 
@@ -122,7 +118,7 @@ npx prisma generate
 npm run dev
 ```
 
-The application will be available at [http://localhost:3000](http://localhost:3000)
+The application will be available at [https://chat-app-pi-ten-14.vercel.app/](https://chat-app-pi-ten-14.vercel.app/)
 
 ## Usage
 
@@ -247,8 +243,8 @@ This approach was chosen for:
 2. Import your repository on [Vercel](https://vercel.com)
 
 3. Add environment variables in Vercel dashboard:
-   - `DATABASE_URL`: Your PostgreSQL connection string (e.g., Supabase URL)
-   - `NEXTAUTH_SECRET`: Your secret key (generate with `openssl rand -base64 32`)
+   - `DATABASE_URL`: mongodb+srv://aashutoshsingh1003_db_user:king123@cluster0.vcvotgb.mongodb.net/chatapp?retryWrites=true&w=majority&appName=Cluster0
+   - `NEXTAUTH_SECRET`: yoyohtefghsghsghgsehgjsnabjdkkkks
    - `NEXTAUTH_URL`: `https://chat-app-pi-ten-14.vercel.app`
 
 4. Deploy
