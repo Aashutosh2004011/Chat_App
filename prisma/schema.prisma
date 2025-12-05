@@ -1,15 +1,14 @@
 generator client {
   provider = "prisma-client-js"
-  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
   email         String    @unique
   username      String    @unique
   password      String
@@ -23,8 +22,8 @@ model User {
 }
 
 model Account {
-  id                String  @id @default(cuid())
-  userId            String
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
   type              String
   provider          String
   providerAccountId String
@@ -42,14 +41,15 @@ model Account {
 }
 
 model Session {
-  id           String   @id @default(cuid())
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   sessionToken String   @unique
-  userId       String
+  userId       String   @db.ObjectId
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   identifier String
   token      String   @unique
   expires    DateTime
@@ -58,7 +58,7 @@ model VerificationToken {
 }
 
 model Channel {
-  id          String    @id @default(cuid())
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
   name        String    @unique
   description String?
   isPrivate   Boolean   @default(false)
@@ -70,9 +70,9 @@ model Channel {
 }
 
 model ChannelMember {
-  id        String   @id @default(cuid())
-  userId    String
-  channelId String
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  channelId String   @db.ObjectId
   joinedAt  DateTime @default(now())
 
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -82,10 +82,10 @@ model ChannelMember {
 }
 
 model Message {
-  id        String   @id @default(cuid())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   content   String
-  userId    String
-  channelId String
+  userId    String   @db.ObjectId
+  channelId String   @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   isEdited  Boolean  @default(false)
@@ -93,6 +93,4 @@ model Message {
 
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   channel   Channel  @relation(fields: [channelId], references: [id], onDelete: Cascade)
-
-  @@index([channelId, createdAt])
 }
