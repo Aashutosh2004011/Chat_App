@@ -303,4 +303,4 @@ MIT
 
 ## Author
 
-Built as a full-stack internship assignment for Deeref
+Aashutosh
